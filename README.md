@@ -1,6 +1,7 @@
 # feis_mobile
 
-A new Flutter project.
+# Pemrograman Mobile
+Project Akhir Mata Kuliah Pemrograman Mobile
 
 ## Getting Started
 
