@@ -17,6 +17,12 @@ Project Akhir Mata Kuliah Pemrograman Mobile
 + Adib Dwi Setyawan         182410103082
 
 ### Laporan Progress :
-- Progress 1
+- Progress 1 :
+    + Inisiasi Project Flutter
+    + Remove debug banner
+    + Add Page About Team
 - Progress 2
+    + Remove Page About Team
+    + Change Color title bar
+    + Add Container Wiget
 - Progress 3
