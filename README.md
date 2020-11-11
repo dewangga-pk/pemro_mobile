@@ -18,11 +18,12 @@ Project Akhir Mata Kuliah Pemrograman Mobile
 
 ### Laporan Progress :
 - Progress 1 :
-    [x] Inisiasi Project Flutter
-    [x] Remove debug banner
-    [x] Add Page About Team
-- Progress 2
-    [x] Remove Page About Team
-    [x] Change Color title bar
-    [x] Add Container Wiget
+    + [x] Inisiasi Project Flutter
+    + [x] Remove debug banner
+    + [x] Add Page About Team
+- Progress 2 :
+    + [x] Remove Page About Team
+    + [x] Change Color title bar
+    + [x] Add Container Wiget
+    + [x] Add Home Page For BPS
 - Progress 3
