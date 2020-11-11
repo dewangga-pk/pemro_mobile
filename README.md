@@ -26,4 +26,7 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] Change Color title bar
     + [x] Add Container Wiget
     + [x] Add Home Page For BPS
-- Progress 3
+- Progress 3 :
+    + [x] Add Debug Banner
+    + [x] Add Images Folder
+    + [x] Add Image Icon

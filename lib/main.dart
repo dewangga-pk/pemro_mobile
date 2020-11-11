@@ -24,14 +24,7 @@ class MyApp extends StatelessWidget {
                   border: Border.all(color: Color(0xff0718FF))),
               child: Column(
                 children: <Widget>[
-                  Container(
-                    width: 58,
-                    height: 58,
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                  ),
+                  Image(image: AssetImage('images/penduduk.png')),
                   Text(
                     "Penduduk",
                     style: TextStyle(color: Colors.white),
