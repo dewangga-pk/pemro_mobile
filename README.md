@@ -30,3 +30,11 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] Add Debug Banner
     + [x] Add Images Folder
     + [x] Add Image Icon
+- Progress 4 :
+    + [x] Appbar Remake
+    + [x] Background Image
+    + [x] Button with Image
+
+
+### Laporan Page Progress :
+- [x] BPS Home Page
