@@ -1,3 +1,4 @@
+import 'package:feis_mobile/bps_penduduk.dart';
 import 'package:flutter/material.dart';
 
 class BPSIndex extends StatelessWidget {
@@ -60,7 +61,12 @@ class BPSIndex extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0)),
                     padding: EdgeInsets.all(5),
                     color: Color(0xff2196F3),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return BPSPenduduk();
+                      }));
+                    },
                     child: Column(
                       children: <Widget>[
                         Image.asset('images/penduduk.png'),
