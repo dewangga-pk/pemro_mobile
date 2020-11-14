@@ -31,16 +31,21 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] Add Images Folder
     + [x] Add Image Icon
 - Progress 4 :
+    + [x] Stateful Widget
     + [x] Appbar Remake
     + [x] Background Image
     + [x] Button with Image
+    + [x] ListView
+    + [x] Card widget
+    + [x] Build Card widget with method
+    + [x] BPS ->Penduduk Page
 
 ### RPS
 - [x] Core Widget & Root Widget
 - [x] Navigation/Navigator
 - [x] Image Asset, pubspec.yaml
-- [] Stateful/Statless Widget,Custom Widget,Listview
-- [] UTS
+- [x] Stateful/Statless Widget,Custom Widget,Listview
+- [ ] UTS
 
 ### Laporan Page Progress :
 - [x] BPS Home Page
