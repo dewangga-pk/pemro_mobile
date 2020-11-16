@@ -50,7 +50,6 @@ flutter:
     - images/fields.png
     - images/Food.png
     - images/penduduk.png
-    - images/logout.png
     - images/Jatim.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

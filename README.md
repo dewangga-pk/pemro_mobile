@@ -38,7 +38,11 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] ListView
     + [x] Card widget
     + [x] Build Card widget with method
-    + [x] BPS ->Penduduk Page
+    + [x] BPS ->Penduduk View
+- Progress 5 :
+    + [x] Adjust appbar icon
+    + [x] Adjust folder bps
+    + [x] BPS -> Konsumsi View
 
 ### RPS
 - [x] Core Widget & Root Widget
@@ -48,4 +52,7 @@ Project Akhir Mata Kuliah Pemrograman Mobile
 - [ ] UTS
 
 ### Laporan Page Progress :
-- [x] BPS Home Page
+- [x] BPS :
+    + [x] Home Page
+    + [x] Penduduk view
+    + [x] Konsumsi view
