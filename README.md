@@ -12,9 +12,9 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + Bappeda
 
 ## Anggota Kelompok O Kelas IF B
-+ Dewangga Putra Kuswanto   182410103005
-+ Muhammad Yusuf Azizi      182410103040
-+ Adib Dwi Setyawan         182410103082
++ [Dewangga Putra Kuswanto](https://github.com/dewangga-pk)   182410103005
++ [Muhammad Yusuf Azizi](https://github.com/kproyusuf)      182410103040
++ [Adib Dwi Setyawan](https://github.com/adib86)         182410103082
 
 ### Laporan Progress :
 - Progress 1 :
