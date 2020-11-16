@@ -45,9 +45,7 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] BPS -> Konsumsi View
 
 ### RPS
-```python
-https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbtz1pK-o4Jum6wy8gk1nCV4/edit#gid=0
-```
+Chek it at [RPS](https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbtz1pK-o4Jum6wy8gk1nCV4/edit#gid=0)
 - [x] Core Widget & Root Widget
 - [x] Navigation/Navigator
 - [x] Image Asset, pubspec.yaml
