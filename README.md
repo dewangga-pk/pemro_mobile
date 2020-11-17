@@ -16,6 +16,14 @@ Project Akhir Mata Kuliah Pemrograman Mobile
 + [Muhammad Yusuf Azizi](https://github.com/kproyusuf)      182410103040
 + [Adib Dwi Setyawan](https://github.com/adib86)         182410103082
 
+### Implementasi RPS
+Check it at [RPS](https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbtz1pK-o4Jum6wy8gk1nCV4/edit#gid=0)
+- [x] Core Widget & Root Widget
+- [x] Navigation/Navigator
+- [x] Image Asset, pubspec.yaml
+- [x] Stateful/Statless Widget,Custom Widget,Listview
+- [ ] UTS
+
 ### Laporan Progress :
 - Progress 1 :
     + [x] Inisiasi Project Flutter
@@ -44,14 +52,6 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] Adjust folder bps
     + [x] BPS -> Konsumsi View
 - Progress 6 :
-
-### RPS
-Check it at [RPS](https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbtz1pK-o4Jum6wy8gk1nCV4/edit#gid=0)
-- [x] Core Widget & Root Widget
-- [x] Navigation/Navigator
-- [x] Image Asset, pubspec.yaml
-- [x] Stateful/Statless Widget,Custom Widget,Listview
-- [ ] UTS
 
 ### Laporan Page Progress :
 - [x] BPS :
