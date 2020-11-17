@@ -43,6 +43,7 @@ Project Akhir Mata Kuliah Pemrograman Mobile
     + [x] Adjust appbar icon
     + [x] Adjust folder bps
     + [x] BPS -> Konsumsi View
+- Progress 6 :
 
 ### RPS
 Check it at [RPS](https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbtz1pK-o4Jum6wy8gk1nCV4/edit#gid=0)
