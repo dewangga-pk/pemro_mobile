@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Detailpenduduk extends StatelessWidget {
+class BPSDetailpenduduk extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

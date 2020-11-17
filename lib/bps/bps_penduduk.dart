@@ -1,3 +1,4 @@
+import 'package:feis_mobile/bps/bps_detail_penduduk.dart';
 import 'package:flutter/material.dart';
 
 class BPSPenduduk extends StatefulWidget {
@@ -148,13 +149,17 @@ class _BPSPendudukState extends State<BPSPenduduk> {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(
-                      Icons.info_outline,
-                      color: Colors.green,
-                    ),
-                    tooltip: 'Detail',
-                    onPressed: () {},
-                  ),
+                      icon: Icon(
+                        Icons.info_outline,
+                        color: Colors.green,
+                      ),
+                      tooltip: 'Detail',
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return BPSDetailpenduduk();
+                        }));
+                      }),
                 ],
               )),
         ],

@@ -51,10 +51,12 @@ Check it at [RPS](https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbt
     + [x] Adjust appbar icon
     + [x] Adjust folder bps
     + [x] BPS -> Konsumsi View
-- Progress 6 :
+    + [x] Detail View page
+    + [x] add route navigator detail view page
 
 ### Laporan Page Progress :
 - [x] BPS :
     + [x] Home Page
     + [x] Penduduk view
     + [x] Konsumsi view
+    + [x] Penduduk detail view 20%
