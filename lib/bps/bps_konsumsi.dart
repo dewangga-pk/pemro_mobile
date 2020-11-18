@@ -109,7 +109,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     child: ListView(
                       children: <Widget>[
-                        for (var i = 0; i < 20; i++) buildCard(),
+                        buildCard(),
                       ],
                     ),
                   ),
@@ -132,8 +132,8 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               margin: EdgeInsets.all(5),
               child: Row(
                 children: <Widget>[
-                  Icon(Icons.location_city),
-                  Text("Jember"),
+                  Icon(Icons.filter_vintage),
+                  Text("Beras"),
                 ],
               )),
           Container(
@@ -141,7 +141,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.local_dining),
-                  Text("128900"),
+                  Text("6.19"),
                 ],
               )),
           Container(

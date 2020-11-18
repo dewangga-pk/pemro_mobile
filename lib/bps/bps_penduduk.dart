@@ -28,7 +28,7 @@ class _BPSPendudukState extends State<BPSPenduduk> {
             ),
             IconButton(
               icon: const Icon(Icons.exit_to_app),
-              tooltip: 'Next page',
+              tooltip: 'log out',
               onPressed: () {},
             ),
           ],
