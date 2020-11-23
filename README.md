@@ -60,3 +60,5 @@ Check it at [RPS](https://docs.google.com/spreadsheets/d/1UkqZhGRY1-Vz9fLrN3Jlbt
     + [x] Penduduk view
     + [x] Konsumsi view
     + [x] Penduduk detail view 20%
+    
+### [Design Interface](https://www.figma.com/file/jnEPmYsOfH4XRyqT2ljz9p/FEiZ-Mobile?node-id=0%3A1)
