@@ -1,19 +1,18 @@
-import 'package:feis_mobile/bps/bps_detail_konsumsi.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
-class BPSKonsumsi extends StatefulWidget {
+class BPSHasilPanen extends StatefulWidget {
   @override
-  _BPSKonsumsiState createState() => _BPSKonsumsiState();
+  _BPSHasilPanenState createState() => _BPSHasilPanenState();
 }
 
-class _BPSKonsumsiState extends State<BPSKonsumsi> {
+class _BPSHasilPanenState extends State<BPSHasilPanen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BPSAppBar().buildAppBar(context),
       body: Stack(
-        children: <Widget>[
+        children: [
           Column(children: <Widget>[
             Flexible(
               flex: 1,
@@ -44,7 +43,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                       gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
-                    colors: [Color(0xff4AA84C), Color(0xff01455B)],
+                    colors: [Color(0xffFFC107), Color(0xff9D8439)],
                   )),
                   width: 145,
                   height: 40,
@@ -52,12 +51,12 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Image(
-                          image: AssetImage('images/Food.png'),
+                          image: AssetImage('images/fields.png'),
                           width: 20,
                           height: 20,
                         ),
                         Text(
-                          'Konsumsi',
+                          'Pertanian',
                           style: TextStyle(color: Colors.white),
                         )
                       ]),
@@ -75,9 +74,9 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                         color: Color.fromRGBO(255, 255, 255, 0.65),
                       ),
                       child: Text(
-                        "Data Konsumsi(kg per kapita)",
+                        "Data Hasil Panen Pangan Jawa Timur",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold, fontSize: 13),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -89,7 +88,51 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     child: ListView(
                       children: <Widget>[
-                        buildCard(),
+                        Card(
+                          elevation: 5,
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.all(5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Row(
+                                          children: [
+                                            Icon(Icons.location_city),
+                                            Text("Kab.Jember"),
+                                          ],
+                                        ),
+                                        Text("2019"),
+                                      ],
+                                    )),
+                                Container(
+                                    margin: EdgeInsets.all(5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Row(
+                                          children: [
+                                            Icon(Icons.filter_vintage),
+                                            Text("Beras"),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text("91941.16 ton"),
+                                          ],
+                                        )
+                                      ],
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -97,51 +140,6 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               ],
             ),
           )
-        ],
-      ),
-    );
-  }
-
-  Card buildCard() {
-    return Card(
-      elevation: 5,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Container(
-              margin: EdgeInsets.all(5),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.filter_vintage),
-                  Text("Beras"),
-                ],
-              )),
-          Container(
-              margin: EdgeInsets.all(5),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.local_dining),
-                  Text("6.19"),
-                ],
-              )),
-          Container(
-              margin: EdgeInsets.all(5),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(
-                        Icons.info_outline,
-                        color: Colors.green,
-                      ),
-                      tooltip: 'Detail',
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return BPSDetailKonsumsi();
-                        }));
-                      }),
-                ],
-              )),
         ],
       ),
     );

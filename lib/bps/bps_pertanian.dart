@@ -1,32 +1,12 @@
+import 'package:feis_mobile/bps/bps_hasilpanen.dart';
+import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
 class BPSPertanian extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff0309B7),
-        title: Row(
-          children: <Widget>[
-            Image(image: AssetImage('images/BPS.png')),
-            Text('BPS')
-          ],
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.home),
-            tooltip: 'Go to Home Page',
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            tooltip: 'Next page',
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar: BPSAppBar().buildAppBar(context),
       body: Stack(
         children: <Widget>[
           Column(children: <Widget>[
@@ -59,7 +39,7 @@ class BPSPertanian extends StatelessWidget {
                       gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
-                    colors: [Color(0xff4AA84C), Color(0xff01455B)],
+                    colors: [Color(0xffFFC107), Color(0xff9D8439)],
                   )),
                   width: 145,
                   height: 40,
@@ -67,12 +47,12 @@ class BPSPertanian extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Image(
-                          image: AssetImage('images/Food.png'),
+                          image: AssetImage('images/fields.png'),
                           width: 20,
                           height: 20,
                         ),
                         Text(
-                          'Konsumsi',
+                          'Pertanian',
                           style: TextStyle(color: Colors.white),
                         )
                       ]),
@@ -99,7 +79,7 @@ class BPSPertanian extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return null;
+                          return BPSHasilPanen();
                         }));
                       },
                       child: Column(
