@@ -1,34 +1,34 @@
-import 'package:feis_mobile/bps/bps_konsumsi.dart';
-import 'package:feis_mobile/bps/bps_penduduk.dart';
-import 'package:feis_mobile/bps/bps_pertanian.dart';
 import 'package:flutter/material.dart';
 
-class BPSIndex extends StatelessWidget {
+class BPSPertanian extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xff0309B7),
-          title: Row(
-            children: <Widget>[
-              Image(image: AssetImage('images/BPS.png')),
-              Text('BPS')
-            ],
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.home),
-              tooltip: 'Go to Home Page',
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              tooltip: 'Next page',
-              onPressed: () {},
-            ),
+      appBar: AppBar(
+        backgroundColor: Color(0xff0309B7),
+        title: Row(
+          children: <Widget>[
+            Image(image: AssetImage('images/BPS.png')),
+            Text('BPS')
           ],
         ),
-        body: Stack(children: <Widget>[
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.home),
+            tooltip: 'Go to Home Page',
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            tooltip: 'Next page',
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: Stack(
+        children: <Widget>[
           Column(children: <Widget>[
             Flexible(
               flex: 1,
@@ -50,12 +50,43 @@ class BPSIndex extends StatelessWidget {
             ),
           ]),
           Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [Color(0xff4AA84C), Color(0xff01455B)],
+                  )),
+                  width: 145,
+                  height: 40,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Image(
+                          image: AssetImage('images/Food.png'),
+                          width: 20,
+                          height: 20,
+                        ),
+                        Text(
+                          'Konsumsi',
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ]),
+                ),
+              ],
+            ),
+          ),
+          Container(
             margin: EdgeInsets.all(10),
             child: Center(
-              child: Column(
+              child: Row(
                 children: <Widget>[
                   Spacer(
-                    flex: 2,
+                    flex: 1,
                   ),
                   SizedBox(
                     width: 85,
@@ -64,23 +95,23 @@ class BPSIndex extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
                       padding: EdgeInsets.all(5),
-                      color: Color(0xff2196F3),
+                      color: Color(0xffAACC38),
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return BPSPenduduk();
+                          return null;
                         }));
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Image.asset(
-                            'images/penduduk.png',
+                            'images/hasilpanen.png',
                             width: 30,
                             height: 30,
                           ),
                           Text(
-                            'Penduduk',
+                            'Hasil Panen',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -88,7 +119,7 @@ class BPSIndex extends StatelessWidget {
                     ),
                   ),
                   Spacer(
-                    flex: 1,
+                    flex: 2,
                   ),
                   SizedBox(
                     width: 85,
@@ -101,19 +132,19 @@ class BPSIndex extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return BPSKonsumsi();
+                          return null;
                         }));
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Image.asset(
-                            'images/Food.png',
+                            'images/luaslahan.png',
                             width: 30,
                             height: 30,
                           ),
                           Text(
-                            'Konsumsi',
+                            'Luas Lahan',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -123,43 +154,12 @@ class BPSIndex extends StatelessWidget {
                   Spacer(
                     flex: 1,
                   ),
-                  SizedBox(
-                    width: 85,
-                    height: 85,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      padding: EdgeInsets.all(5),
-                      color: Color(0xffFFC107),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return BPSPertanian();
-                        }));
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Image.asset(
-                            'images/fields.png',
-                            width: 30,
-                            height: 30,
-                          ),
-                          Text(
-                            'Pertanian',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Spacer(
-                    flex: 2,
-                  ),
                 ],
               ),
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }
