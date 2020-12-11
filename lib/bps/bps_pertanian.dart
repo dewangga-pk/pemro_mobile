@@ -1,4 +1,5 @@
 import 'package:feis_mobile/bps/bps_hasilpanen.dart';
+import 'package:feis_mobile/bps/bps_luaslahan.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +113,7 @@ class BPSPertanian extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return null;
+                          return BPSLuasLahan();
                         }));
                       },
                       child: Column(
