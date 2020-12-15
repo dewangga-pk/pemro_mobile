@@ -1,32 +1,14 @@
 import 'package:feis_mobile/bps/bps_konsumsi.dart';
 import 'package:feis_mobile/bps/bps_penduduk.dart';
+import 'package:feis_mobile/bps/bps_pertanian.dart';
+import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
 class BPSIndex extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xff0309B7),
-          title: Row(
-            children: <Widget>[
-              Image(image: AssetImage('images/BPS.png')),
-              Text('BPS')
-            ],
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.home),
-              tooltip: 'Go to Home Page',
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              tooltip: 'Next page',
-              onPressed: () {},
-            ),
-          ],
-        ),
+        appBar: BPSAppBar().buildAppBar(context),
         body: Stack(children: <Widget>[
           Column(children: <Widget>[
             Flexible(
@@ -130,7 +112,12 @@ class BPSIndex extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0)),
                       padding: EdgeInsets.all(5),
                       color: Color(0xffFFC107),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return BPSPertanian();
+                        }));
+                      },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[

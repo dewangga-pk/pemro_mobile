@@ -1,3 +1,5 @@
+import 'package:feis_mobile/bps/bps_detail_konsumsi.dart';
+import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
 class BPSKonsumsi extends StatefulWidget {
@@ -9,29 +11,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff0309B7),
-        title: Row(
-          children: <Widget>[
-            Image(image: AssetImage('images/BPS.png')),
-            Text('BPS')
-          ],
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.home),
-            tooltip: 'Go to Home Page',
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            tooltip: 'Next page',
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar: BPSAppBar().buildAppBar(context),
       body: Stack(
         children: <Widget>[
           Column(children: <Widget>[
@@ -89,13 +69,13 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                       margin: EdgeInsets.only(top: 10),
                       padding: EdgeInsets.fromLTRB(10, 16, 10, 16),
                       width: 250,
-                      height: 48,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Color.fromRGBO(255, 255, 255, 0.65),
                       ),
                       child: Text(
-                        "Data Penduduk Jawa Timur",
+                        "Data Konsumsi(kg per kapita)",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                         textAlign: TextAlign.center,
@@ -149,13 +129,17 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(
-                      Icons.info_outline,
-                      color: Colors.green,
-                    ),
-                    tooltip: 'Detail',
-                    onPressed: () {},
-                  ),
+                      icon: Icon(
+                        Icons.info_outline,
+                        color: Colors.green,
+                      ),
+                      tooltip: 'Detail',
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return BPSDetailKonsumsi();
+                        }));
+                      }),
                 ],
               )),
         ],
