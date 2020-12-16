@@ -1,3 +1,4 @@
+import 'package:feis_mobile/bps/bps_field_penduduk.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
@@ -179,7 +180,12 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   ),
                                 ),
                                 RaisedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return BPSPendudukField();
+                                    }));
+                                  },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
