@@ -1,3 +1,4 @@
+import 'package:feis_mobile/bps/bps_field_hasilpanen.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
@@ -91,7 +92,12 @@ class _BPSHasilPanenState extends State<BPSHasilPanen> {
                         Card(
                           elevation: 5,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return BPSHasilPanenField();
+                              }));
+                            },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[

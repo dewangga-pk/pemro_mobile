@@ -1,5 +1,6 @@
 import 'package:feis_mobile/bps/bps_field_penduduk.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
+import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BPSDetailpenduduk extends StatefulWidget {
@@ -14,26 +15,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
         appBar: BPSAppBar().buildAppBar(context),
         body: Stack(
           children: <Widget>[
-            Column(children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Column(
-                  children: <Widget>[Image.asset('images/Jatim.png')],
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Column(
-                  children: <Widget>[Image.asset('images/Jatim.png')],
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Column(
-                  children: <Widget>[Image.asset('images/Jatim.png')],
-                ),
-              ),
-            ]),
+            Background().buildBackground(context),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

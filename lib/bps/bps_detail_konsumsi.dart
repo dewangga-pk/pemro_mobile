@@ -1,3 +1,4 @@
+import 'package:feis_mobile/bps/bps_field_konsumsi.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
@@ -182,7 +183,12 @@ class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
                                 ),
                               ),
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return BPSKonsumsiField();
+                                  }));
+                                },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),

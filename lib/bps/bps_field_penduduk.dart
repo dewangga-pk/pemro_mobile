@@ -127,7 +127,7 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return BPSPendudukField();
+                                    return null;
                                   }));
                                 },
                                 shape: RoundedRectangleBorder(

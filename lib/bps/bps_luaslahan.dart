@@ -1,4 +1,6 @@
+import 'package:feis_mobile/bps/bps_field_luaslahan.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
+import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BPSLuasLahan extends StatefulWidget {
@@ -13,26 +15,7 @@ class _BPSLuasLahanState extends State<BPSLuasLahan> {
       appBar: BPSAppBar().buildAppBar(context),
       body: Stack(
         children: [
-          Column(children: <Widget>[
-            Flexible(
-              flex: 1,
-              child: Column(
-                children: <Widget>[Image.asset('images/Jatim.png')],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Column(
-                children: <Widget>[Image.asset('images/Jatim.png')],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Column(
-                children: <Widget>[Image.asset('images/Jatim.png')],
-              ),
-            ),
-          ]),
+          Background().buildBackground(context),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +74,12 @@ class _BPSLuasLahanState extends State<BPSLuasLahan> {
                         Card(
                           elevation: 5,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return BPSLuasLahanField();
+                              }));
+                            },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[

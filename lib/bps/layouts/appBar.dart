@@ -15,7 +15,7 @@ class BPSAppBar {
           icon: const Icon(Icons.home),
           tooltip: 'Go to Home Page',
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.popUntil(context, (route) => route.isFirst);
           },
         ),
         IconButton(
