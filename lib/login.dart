@@ -1,6 +1,4 @@
-import 'package:feis_mobile/bappeda/bappeda_index.dart';
-import 'package:feis_mobile/bps/bps_index.dart';
-import 'package:feis_mobile/litbang/litbang_index.dart';
+import 'package:feis_mobile/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -130,26 +128,28 @@ class _LoginState extends State<Login> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(20),
                               splashColor: Colors.amber,
-                              onTap: () {
-                                if (username.text == "bps" &&
-                                    pass.text == "bps") {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return BPSIndex();
-                                  }));
-                                } else if (username.text == "bappeda" &&
-                                    pass.text == "bappeda") {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return Bappeda();
-                                  }));
-                                } else if (username.text == "litbang" &&
-                                    pass.text == "litbang") {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return LitbangTani();
-                                  }));
-                                } else {}
+                              onTap: () async {
+                                // if (username.text == "bps" &&
+                                //     pass.text == "bps") {
+                                //   Navigator.push(context,
+                                //       MaterialPageRoute(builder: (context) {
+                                //     return BPSIndex();
+                                //   }));
+                                // } else if (username.text == "bappeda" &&
+                                //     pass.text == "bappeda") {
+                                //   Navigator.push(context,
+                                //       MaterialPageRoute(builder: (context) {
+                                //     return Bappeda();
+                                //   }));
+                                // } else if (username.text == "litbang" &&
+                                //     pass.text == "litbang") {
+                                //   Navigator.push(context,
+                                //       MaterialPageRoute(builder: (context) {
+                                //     return LitbangTani();
+                                //   }));
+                                // } else {}
+
+                                await AuthServices.signInAnonymous();
                               },
                               child: Center(
                                 child: Text(

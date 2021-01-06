@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "174696718747",
+    "firebase_url": "https://feis-mobile-default-rtdb.firebaseio.com",
+    "project_id": "feis-mobile",
+    "storage_bucket": "feis-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174696718747:android:6ac85d3088cc995361c13e",
+        "android_client_info": {
+          "package_name": "com.example.feis_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174696718747-934e241jslcon57ucic1io2m6e3j23dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNNSLPmHD1_cQePOOEbpwhxgKBQ0-qi_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174696718747-934e241jslcon57ucic1io2m6e3j23dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:feis_mobile/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class BPSAppBar {
@@ -21,7 +22,9 @@ class BPSAppBar {
         IconButton(
           icon: const Icon(Icons.exit_to_app),
           tooltip: 'Log out',
-          onPressed: () {},
+          onPressed: () async {
+            await AuthServices.signOut();
+          },
         ),
       ],
     );

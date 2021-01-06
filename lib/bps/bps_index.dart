@@ -2,9 +2,13 @@ import 'package:feis_mobile/bps/bps_konsumsi.dart';
 import 'package:feis_mobile/bps/bps_penduduk.dart';
 import 'package:feis_mobile/bps/bps_pertanian.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class BPSIndex extends StatelessWidget {
+  final User user;
+  BPSIndex(this.user);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
