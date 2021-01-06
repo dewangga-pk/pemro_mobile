@@ -1,3 +1,4 @@
+import 'package:feis_mobile/bappeda/bappeda_datawilayah.dart';
 import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class Bappeda extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return null;
+                          return BappedaDataWilayah();
                         }));
                       },
                       child: Column(
