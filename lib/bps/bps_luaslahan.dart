@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/bps_field_luaslahan.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
@@ -69,71 +70,79 @@ class _BPSLuasLahanState extends State<BPSLuasLahan> {
                   child: Container(
                     width: 320,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ListView(
-                      children: <Widget>[
-                        Card(
-                          elevation: 5,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return BPSLuasLahanField();
-                              }));
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Container(
-                                    margin: EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Icon(Icons.location_city),
-                                            Text("Kab.Jember"),
-                                          ],
-                                        ),
-                                        Text("2019"),
-                                      ],
-                                    )),
-                                Container(
-                                    margin: EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Image(
-                                              image: AssetImage(
-                                                  "images/luas_lahan_icon.png"),
-                                              width: 20,
-                                              height: 20,
-                                            ),
-                                            Text("Luas Lahan"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("20504.49 ha"),
-                                          ],
-                                        )
-                                      ],
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('city')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                              itemCount: snapshot.data.documents.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot ds =
+                                    snapshot.data.documents[index];
+                                return buildCard(ds);
+                              });
+                        }),
                   ),
                 ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Card buildCard(DocumentSnapshot ds) {
+    return Card(
+      elevation: 5,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return BPSLuasLahanField(ds);
+          }));
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Icon(Icons.location_city),
+                        Text(ds['name']),
+                      ],
+                    ),
+                    Text(ds['years'].toString()),
+                  ],
+                )),
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Image(
+                          image: AssetImage("images/luas_lahan_icon.png"),
+                          width: 20,
+                          height: 20,
+                        ),
+                        Text("Luas Lahan"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(ds['farm'].toString() + " ha"),
+                      ],
+                    )
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   }

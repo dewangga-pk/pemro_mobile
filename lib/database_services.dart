@@ -11,14 +11,20 @@ class DatabaseServices {
       {String name, int population, int years}) async {
     await cityCollection
         .doc(id)
-        .set({'name': name, 'population': population, 'years': years});
+        .update({'name': name, 'population': population, 'years': years});
   }
 
   static Future<void> updateKonsumsi(String id,
       {String food, double rate}) async {
-    await consumCollection
-        .doc(id)
-        .set({'food': food, 'rate': rate}, SetOptions(merge: true));
+    await consumCollection.doc(id).update({'food': food, 'rate': rate});
+  }
+
+  static Future<void> updateFarm(String id, {double luas}) async {
+    await cityCollection.doc(id).update({'farm': luas});
+  }
+
+  static Future<void> updateYields(String id, {int result}) async {
+    await cityCollection.doc(id).update({'yields': result});
   }
 
   static Future<DocumentSnapshot> getCity(String id) async {
