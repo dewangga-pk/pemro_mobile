@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/bps_field_konsumsi.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
 class BPSDetailKonsumsi extends StatefulWidget {
+  final DocumentSnapshot data;
+  const BPSDetailKonsumsi(this.data);
   @override
   _BPSDetailKonsumsiState createState() => _BPSDetailKonsumsiState();
 }
@@ -10,6 +13,9 @@ class BPSDetailKonsumsi extends StatefulWidget {
 class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
   @override
   Widget build(BuildContext context) {
+    var years = widget.data['years'].toString();
+    var rate = widget.data['rate'].toString();
+    var food = widget.data['food'];
     return Scaffold(
       appBar: BPSAppBar().buildAppBar(context),
       body: Stack(
@@ -120,7 +126,7 @@ class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
                                 )),
                             Container(
                                 margin: EdgeInsets.only(right: 10),
-                                child: Text("Beras")),
+                                child: Text(food)),
                           ],
                         ),
                         Row(
@@ -144,7 +150,7 @@ class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
                                 )),
                             Container(
                                 margin: EdgeInsets.only(right: 10),
-                                child: Text("1287882")),
+                                child: Text(rate)),
                           ],
                         ),
                         Row(
@@ -163,7 +169,7 @@ class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
                                 )),
                             Container(
                                 margin: EdgeInsets.only(right: 10),
-                                child: Text("2019")),
+                                child: Text(years)),
                           ],
                         ),
                         Container(
@@ -172,7 +178,9 @@ class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -186,7 +194,7 @@ class _BPSDetailKonsumsiState extends State<BPSDetailKonsumsi> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return BPSKonsumsiField();
+                                    return BPSKonsumsiField(widget.data);
                                   }));
                                 },
                                 shape: RoundedRectangleBorder(
