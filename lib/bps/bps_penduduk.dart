@@ -112,7 +112,7 @@ class _BPSPendudukState extends State<BPSPenduduk> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.people_outline),
-                  Text("128900"),
+                  Text(ds['population'].toString()),
                 ],
               )),
           Container(

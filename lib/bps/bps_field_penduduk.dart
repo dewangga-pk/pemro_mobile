@@ -135,11 +135,13 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
                               ),
                               RaisedButton(
                                 onPressed: () async {
-                                  // await DatabaseServices.createOrUpdateCity(
-                                  //     widget.snapshot.id,
-                                  //     population:
-                                  //         int.parse(populationController.text),
-                                  //     years: int.parse(yearsController.text));
+                                  await DatabaseServices.createOrUpdateCity(
+                                      widget.snapshot.id,
+                                      name: widget.snapshot['name'],
+                                      population:
+                                          int.parse(populationController.text),
+                                      years: int.parse(yearsController.text));
+                                  Navigator.pop(context);
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),

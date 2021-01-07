@@ -4,8 +4,6 @@ import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
-import '../database_services.dart';
-
 class BPSDetailpenduduk extends StatefulWidget {
   final DocumentSnapshot snapshot;
   const BPSDetailpenduduk(this.snapshot);
@@ -16,6 +14,8 @@ class BPSDetailpenduduk extends StatefulWidget {
 class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
   @override
   Widget build(BuildContext context) {
+    var years = widget.snapshot['years'].toString();
+    var population = widget.snapshot['population'].toString();
     return Scaffold(
         appBar: BPSAppBar().buildAppBar(context),
         body: Stack(
@@ -127,7 +127,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   )),
                               Container(
                                   margin: EdgeInsets.only(right: 10),
-                                  child: Text("1287882")),
+                                  child: Text(population)),
                             ],
                           ),
                           Row(
@@ -146,7 +146,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   )),
                               Container(
                                   margin: EdgeInsets.only(right: 10),
-                                  child: Text("2019")),
+                                  child: Text(years)),
                             ],
                           ),
                           Container(
@@ -156,11 +156,8 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 RaisedButton(
-                                  onPressed: () async {
-                                    DocumentSnapshot snapshot =
-                                        await DatabaseServices.getCity(
-                                            widget.snapshot.id);
-                                    print(snapshot.data());
+                                  onPressed: () {
+                                    Navigator.pop(context);
                                   },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
