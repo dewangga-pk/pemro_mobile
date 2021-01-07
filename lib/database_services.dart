@@ -5,6 +5,6 @@ class DatabaseServices {
       FirebaseFirestore.instance.collection("city");
 
   static Future<void> createOrUpdateCity(String id, {String name}) async {
-    await cityCollection.doc(id).set({'name': name});
+    await cityCollection.doc(id).set({'name': name}, SetOptions(merge: true));
   }
 }
