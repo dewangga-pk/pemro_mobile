@@ -43,7 +43,7 @@ class _BPSKonsumsiFieldState extends State<BPSKonsumsiField> {
                       gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
-                    colors: [Color(0xff2196F3), Color(0xff014E6B)],
+                    colors: [Color(0xff4AA84C), Color(0xff01455B)],
                   )),
                   width: 145,
                   height: 40,
@@ -51,12 +51,12 @@ class _BPSKonsumsiFieldState extends State<BPSKonsumsiField> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Image(
-                          image: AssetImage('images/penduduk.png'),
+                          image: AssetImage('images/Food.png'),
                           width: 20,
                           height: 20,
                         ),
                         Text(
-                          'Penduduk',
+                          'Konsumsi',
                           style: TextStyle(color: Colors.white),
                         )
                       ]),
@@ -68,13 +68,13 @@ class _BPSKonsumsiFieldState extends State<BPSKonsumsiField> {
                       margin: EdgeInsets.only(top: 10),
                       padding: EdgeInsets.fromLTRB(10, 16, 10, 16),
                       width: 250,
-                      height: 48,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Color.fromRGBO(255, 255, 255, 0.65),
                       ),
                       child: Text(
-                        "Data Penduduk Jawa Timur",
+                        "Data Konsumsi(kg per kapita)",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                         textAlign: TextAlign.center,
@@ -98,7 +98,7 @@ class _BPSKonsumsiFieldState extends State<BPSKonsumsiField> {
                         Center(
                           child: Container(
                             margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                            child: Text("Ubah Data Penduduk",
+                            child: Text("Ubah Data Tingkat Konsumsi",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center),
                           ),

@@ -96,9 +96,9 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                         return ListView.builder(
                             itemCount: snapshot.data.documents.length,
                             itemBuilder: (context, index) {
-                              DocumentSnapshot city =
+                              DocumentSnapshot data =
                                   snapshot.data.documents[index];
-                              return buildCard(city);
+                              return buildCard(data);
                             });
                       },
                     ),
@@ -131,7 +131,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.local_dining),
-                  Text("6.19"),
+                  Text(data['rate'].toString()),
                 ],
               )),
           Container(

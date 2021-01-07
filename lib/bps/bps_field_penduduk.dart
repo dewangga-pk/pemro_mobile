@@ -15,10 +15,16 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
   TextEditingController cityController = new TextEditingController();
   TextEditingController populationController = new TextEditingController();
   TextEditingController yearsController = new TextEditingController();
+  @override
+  void initState() {
+    cityController.text = widget.snapshot['name'];
+    populationController.text = widget.snapshot['population'].toString();
+    yearsController.text = widget.snapshot['years'].toString();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    cityController.text = widget.snapshot['name'];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: BPSAppBar().buildAppBar(context),
@@ -123,7 +129,9 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
