@@ -50,7 +50,7 @@ class BPSIndex extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0)),
                       padding: EdgeInsets.all(5),
                       color: Color(0xff2196F3),
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return BPSPenduduk();
