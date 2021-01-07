@@ -24,6 +24,7 @@ class BPSAppBar {
           tooltip: 'Log out',
           onPressed: () async {
             await AuthServices.signOut();
+            Navigator.popUntil(context, (route) => route.isFirst);
           },
         ),
       ],

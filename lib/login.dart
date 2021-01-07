@@ -149,7 +149,10 @@ class _LoginState extends State<Login> {
                                 //   }));
                                 // } else {}
 
-                                await AuthServices.signInAnonymous();
+                                // await AuthServices.signInAnonymous();
+
+                                await AuthServices.signIn(
+                                    username.text, pass.text);
                               },
                               child: Center(
                                 child: Text(

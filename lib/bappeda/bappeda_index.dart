@@ -2,9 +2,12 @@ import 'package:feis_mobile/bappeda/bappeda_datawilayah.dart';
 import 'package:feis_mobile/bappeda/bappeda_pemerataan.dart';
 import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Bappeda extends StatelessWidget {
+  final User user;
+  Bappeda(this.user);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

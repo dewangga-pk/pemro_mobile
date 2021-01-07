@@ -1,9 +1,12 @@
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:feis_mobile/litbang/layouts/appBar.dart';
 import 'package:feis_mobile/litbang/litbang_detail.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LitbangTani extends StatelessWidget {
+  final User user;
+  LitbangTani(this.user);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
