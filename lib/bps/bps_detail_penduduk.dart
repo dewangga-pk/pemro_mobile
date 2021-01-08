@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/bps_field_penduduk.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BPSDetailpenduduk extends StatefulWidget {
+  final DocumentSnapshot snapshot;
+  const BPSDetailpenduduk(this.snapshot);
   @override
   _BPSDetailpendudukState createState() => _BPSDetailpendudukState();
 }
@@ -11,6 +14,8 @@ class BPSDetailpenduduk extends StatefulWidget {
 class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
   @override
   Widget build(BuildContext context) {
+    var years = widget.snapshot['years'].toString();
+    var population = widget.snapshot['population'].toString();
     return Scaffold(
         appBar: BPSAppBar().buildAppBar(context),
         body: Stack(
@@ -102,7 +107,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   )),
                               Container(
                                   margin: EdgeInsets.only(right: 10),
-                                  child: Text("Kab.Jember")),
+                                  child: Text(widget.snapshot['name'])),
                             ],
                           ),
                           Row(
@@ -122,7 +127,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   )),
                               Container(
                                   margin: EdgeInsets.only(right: 10),
-                                  child: Text("1287882")),
+                                  child: Text(population)),
                             ],
                           ),
                           Row(
@@ -141,7 +146,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   )),
                               Container(
                                   margin: EdgeInsets.only(right: 10),
-                                  child: Text("2019")),
+                                  child: Text(years)),
                             ],
                           ),
                           Container(
@@ -151,7 +156,9 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 RaisedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -165,7 +172,7 @@ class _BPSDetailpendudukState extends State<BPSDetailpenduduk> {
                                   onPressed: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return BPSPendudukField();
+                                      return BPSPendudukField(widget.snapshot);
                                     }));
                                   },
                                   shape: RoundedRectangleBorder(

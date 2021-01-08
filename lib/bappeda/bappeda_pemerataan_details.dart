@@ -3,6 +3,12 @@ import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BappedaPemerataanDetails extends StatelessWidget {
+  final int population, yields;
+  final double sumconsum;
+  final String status, city;
+  const BappedaPemerataanDetails(
+      this.population, this.status, this.sumconsum, this.yields, this.city);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +83,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              Text('Kab Jember'),
+                              Text(city),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -91,7 +97,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text("128.000"),
+                                  Text(population.toString()),
                                 ],
                               ),
                               Row(
@@ -107,7 +113,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text("118.95 ton"),
+                                  Text(sumconsum.toStringAsFixed(2) + " ton"),
                                 ],
                               ),
                               Row(
@@ -123,7 +129,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text("128 ton"),
+                                  Text(yields.toString() + " ton"),
                                 ],
                               ),
                               Row(
@@ -139,7 +145,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text("Tercukupi"),
+                                  Text(status),
                                 ],
                               )
                             ],

@@ -1,17 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:feis_mobile/litbang/layouts/appBar.dart';
 import 'package:flutter/material.dart';
 
+import '../database_services.dart';
+
 class LitbangTaniField extends StatefulWidget {
+  final DocumentSnapshot ds;
+  const LitbangTaniField(this.ds);
   @override
   _LitbangTaniFieldState createState() => _LitbangTaniFieldState();
 }
 
 class _LitbangTaniFieldState extends State<LitbangTaniField> {
-  TextEditingController controller = new TextEditingController();
+  TextEditingController plantController = new TextEditingController();
+  TextEditingController harvestController = new TextEditingController();
+
+  @override
+  void initState() {
+    plantController.text = widget.ds['food'];
+    harvestController.text = widget.ds['average_harvest'].toString();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: LitbangTaniAppBar().buildAppBar(context),
       body: Stack(
         children: [
@@ -87,14 +102,15 @@ class _LitbangTaniFieldState extends State<LitbangTaniField> {
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: plantController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.filter_vintage),
                             labelText: "Jenis Pangan",
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          controller: harvestController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.pie_chart_outlined),
                             labelText: "Rata-rata hasil (ton/ha)",
@@ -119,11 +135,13 @@ class _LitbangTaniFieldState extends State<LitbangTaniField> {
                                 ),
                               ),
                               RaisedButton(
-                                onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return null;
-                                  }));
+                                onPressed: () async {
+                                  await DatabaseServices.updateHarvest(
+                                      widget.ds.id,
+                                      harvest:
+                                          double.parse(harvestController.text));
+                                  Navigator.popUntil(
+                                      context, (route) => route.isFirst);
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),

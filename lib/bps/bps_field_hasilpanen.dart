@@ -1,15 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:feis_mobile/database_services.dart';
 import 'package:flutter/material.dart';
 
 import 'layouts/appBar.dart';
 import 'layouts/background.dart';
 
 class BPSHasilPanenField extends StatefulWidget {
+  final DocumentSnapshot data;
+  const BPSHasilPanenField(this.data);
   @override
   _BPSHasilPanenFieldState createState() => _BPSHasilPanenFieldState();
 }
 
 class _BPSHasilPanenFieldState extends State<BPSHasilPanenField> {
-  TextEditingController controller = new TextEditingController();
+  TextEditingController cityController = new TextEditingController();
+  TextEditingController yieldsController = new TextEditingController();
+  TextEditingController yearsController = new TextEditingController();
+  TextEditingController foodController = new TextEditingController();
+
+  @override
+  void initState() {
+    yearsController.text = widget.data['years'].toString();
+    yieldsController.text = widget.data['yields'].toString();
+    cityController.text = widget.data['name'];
+    foodController.text = "Beras";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,21 +106,23 @@ class _BPSHasilPanenFieldState extends State<BPSHasilPanenField> {
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: cityController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.location_city),
                             labelText: "Kota",
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: foodController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.filter_vintage),
                             labelText: "Jenis Pangan",
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          controller: yieldsController,
                           decoration: InputDecoration(
                             icon: ImageIcon(
                                 AssetImage("images/jumlah_panen.png")),
@@ -111,7 +130,8 @@ class _BPSHasilPanenFieldState extends State<BPSHasilPanenField> {
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: yearsController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.date_range),
                             labelText: "Tahun",
@@ -123,7 +143,9 @@ class _BPSHasilPanenFieldState extends State<BPSHasilPanenField> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -134,11 +156,11 @@ class _BPSHasilPanenFieldState extends State<BPSHasilPanenField> {
                                 ),
                               ),
                               RaisedButton(
-                                onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return null;
-                                  }));
+                                onPressed: () async {
+                                  await DatabaseServices.updateYields(
+                                      widget.data.id,
+                                      result: int.parse(yieldsController.text));
+                                  Navigator.pop(context);
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),

@@ -1,14 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
+import 'package:feis_mobile/database_services.dart';
 import 'package:flutter/material.dart';
 
 class BPSPendudukField extends StatefulWidget {
+  final DocumentSnapshot snapshot;
+  const BPSPendudukField(this.snapshot);
   @override
   _BPSPendudukFieldState createState() => _BPSPendudukFieldState();
 }
 
 class _BPSPendudukFieldState extends State<BPSPendudukField> {
-  TextEditingController controller = new TextEditingController();
+  TextEditingController cityController = new TextEditingController();
+  TextEditingController populationController = new TextEditingController();
+  TextEditingController yearsController = new TextEditingController();
+  @override
+  void initState() {
+    cityController.text = widget.snapshot['name'];
+    populationController.text = widget.snapshot['population'].toString();
+    yearsController.text = widget.snapshot['years'].toString();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,20 +102,22 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: cityController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.location_city),
                             labelText: "Kabupaten / Kota",
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          controller: populationController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.people),
                             labelText: "Jumlah Penduduk",
                           ),
                         ),
                         TextField(
+                          controller: yearsController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.date_range),
                             labelText: "Tahun",
@@ -113,7 +129,9 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -124,11 +142,14 @@ class _BPSPendudukFieldState extends State<BPSPendudukField> {
                                 ),
                               ),
                               RaisedButton(
-                                onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return null;
-                                  }));
+                                onPressed: () async {
+                                  await DatabaseServices.createOrUpdateCity(
+                                      widget.snapshot.id,
+                                      name: widget.snapshot['name'],
+                                      population:
+                                          int.parse(populationController.text),
+                                      years: int.parse(yearsController.text));
+                                  Navigator.pop(context);
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),

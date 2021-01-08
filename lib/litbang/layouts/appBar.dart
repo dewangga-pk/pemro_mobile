@@ -1,3 +1,4 @@
+import 'package:feis_mobile/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class LitbangTaniAppBar {
@@ -27,7 +28,10 @@ class LitbangTaniAppBar {
         IconButton(
           icon: const Icon(Icons.exit_to_app),
           tooltip: 'Log out',
-          onPressed: () {},
+          onPressed: () async {
+            await AuthServices.signOut();
+            Navigator.popUntil(context, (route) => route.isFirst);
+          },
         ),
       ],
     );

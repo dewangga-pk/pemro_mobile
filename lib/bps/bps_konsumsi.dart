@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/bps_detail_konsumsi.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:flutter/material.dart';
@@ -87,10 +88,19 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                   child: Container(
                     width: 320,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ListView(
-                      children: <Widget>[
-                        buildCard(),
-                      ],
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('konsumsi')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot data =
+                                  snapshot.data.documents[index];
+                              return buildCard(data);
+                            });
+                      },
                     ),
                   ),
                 ),
@@ -102,7 +112,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
     );
   }
 
-  Card buildCard() {
+  Card buildCard(DocumentSnapshot data) {
     return Card(
       elevation: 5,
       child: Row(
@@ -113,7 +123,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.filter_vintage),
-                  Text("Beras"),
+                  Text(data['food']),
                 ],
               )),
           Container(
@@ -121,7 +131,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.local_dining),
-                  Text("6.19"),
+                  Text(data['rate'].toString()),
                 ],
               )),
           Container(
@@ -137,7 +147,7 @@ class _BPSKonsumsiState extends State<BPSKonsumsi> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return BPSDetailKonsumsi();
+                          return BPSDetailKonsumsi(data);
                         }));
                       }),
                 ],

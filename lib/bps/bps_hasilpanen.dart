@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/bps_field_hasilpanen.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
+import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BPSHasilPanen extends StatefulWidget {
@@ -14,26 +16,7 @@ class _BPSHasilPanenState extends State<BPSHasilPanen> {
       appBar: BPSAppBar().buildAppBar(context),
       body: Stack(
         children: [
-          Column(children: <Widget>[
-            Flexible(
-              flex: 1,
-              child: Column(
-                children: <Widget>[Image.asset('images/Jatim.png')],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Column(
-                children: <Widget>[Image.asset('images/Jatim.png')],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Column(
-                children: <Widget>[Image.asset('images/Jatim.png')],
-              ),
-            ),
-          ]),
+          Background().buildBackground(context),
           Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,59 +70,19 @@ class _BPSHasilPanenState extends State<BPSHasilPanen> {
                   child: Container(
                     width: 320,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ListView(
-                      children: <Widget>[
-                        Card(
-                          elevation: 5,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return BPSHasilPanenField();
-                              }));
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Container(
-                                    margin: EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Icon(Icons.location_city),
-                                            Text("Kab.Jember"),
-                                          ],
-                                        ),
-                                        Text("2019"),
-                                      ],
-                                    )),
-                                Container(
-                                    margin: EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Icon(Icons.filter_vintage),
-                                            Text("Beras"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("91941.16 ton"),
-                                          ],
-                                        )
-                                      ],
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('city')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot ds =
+                                  snapshot.data.documents[index];
+                              return buildCard(ds);
+                            });
+                      },
                     ),
                   ),
                 ),
@@ -147,6 +90,56 @@ class _BPSHasilPanenState extends State<BPSHasilPanen> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Card buildCard(DocumentSnapshot ds) {
+    return Card(
+      elevation: 5,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return BPSHasilPanenField(ds);
+          }));
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Icon(Icons.location_city),
+                        Text(ds['name']),
+                      ],
+                    ),
+                    Text(ds['years'].toString()),
+                  ],
+                )),
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Icon(Icons.filter_vintage),
+                        Text("Beras"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(ds['yields'].toString() + " ton"),
+                      ],
+                    )
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   }

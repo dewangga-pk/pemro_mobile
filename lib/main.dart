@@ -1,20 +1,24 @@
-import 'package:feis_mobile/login.dart';
-// import 'package:feis_mobile/bps/bps_index.dart';
-// import 'package:feis_mobile/litbang/litbang_index.dart';
+import 'package:feis_mobile/auth_services.dart';
+import 'package:feis_mobile/wrapper.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Login(),
+    return StreamProvider.value(
+      value: AuthServices.firebaseUserStream,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
+      ),
     );
   }
 }

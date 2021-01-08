@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BappedaDataWilayahDetails extends StatelessWidget {
+  final DocumentSnapshot ds;
+  final DocumentSnapshot cs;
+  const BappedaDataWilayahDetails(this.ds, this.cs);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +88,7 @@ class BappedaDataWilayahDetails extends StatelessWidget {
                                     Text("Kota/Kabupaten"),
                                   ],
                                 ),
-                                Text("Jember"),
+                                Text(ds['name']),
                               ],
                             )
                           ],
@@ -108,24 +113,12 @@ class BappedaDataWilayahDetails extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.date_range),
-                                    Text("2019"),
+                                    Text(ds['years'].toString()),
                                   ],
                                 ),
-                                Text("128.000"),
+                                Text(ds['population'].toString()),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Icon(Icons.date_range),
-                                    Text("2018"),
-                                  ],
-                                ),
-                                Text("128.000"),
-                              ],
-                            )
                           ],
                         ),
                       ),
@@ -148,24 +141,15 @@ class BappedaDataWilayahDetails extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.filter_vintage),
-                                    Text("Beras(2019)"),
+                                    Text(cs['food'] +
+                                        "(" +
+                                        cs['years'].toString() +
+                                        ")"),
                                   ],
                                 ),
-                                Text("128 ton"),
+                                Text(ds['yields'].toString()),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Icon(Icons.filter_vintage),
-                                    Text("Jagung(2019)"),
-                                  ],
-                                ),
-                                Text("128 ton"),
-                              ],
-                            )
                           ],
                         ),
                       ),
@@ -188,24 +172,12 @@ class BappedaDataWilayahDetails extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.date_range),
-                                    Text("2019"),
+                                    Text(ds['years'].toString()),
                                   ],
                                 ),
-                                Text("128.000 ha"),
+                                Text(ds['farm'].toString() + " ha"),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Icon(Icons.date_range),
-                                    Text("2018"),
-                                  ],
-                                ),
-                                Text("130.000 ha"),
-                              ],
-                            )
                           ],
                         ),
                       ),
@@ -228,24 +200,15 @@ class BappedaDataWilayahDetails extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.filter_vintage),
-                                    Text("Beras(2019)"),
+                                    Text(cs['food'] +
+                                        "(" +
+                                        cs['years'].toString() +
+                                        ")"),
                                   ],
                                 ),
-                                Text("6.19 kg per kapita"),
+                                Text(cs['rate'].toString() + " kg per kapita"),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Icon(Icons.filter_vintage),
-                                    Text("Jagung(2019)"),
-                                  ],
-                                ),
-                                Text("1.5 kg per kapita"),
-                              ],
-                            )
                           ],
                         ),
                       ),

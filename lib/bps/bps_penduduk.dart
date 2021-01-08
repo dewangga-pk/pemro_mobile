@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/bps_detail_penduduk.dart';
 import 'package:feis_mobile/bps/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
@@ -69,10 +70,19 @@ class _BPSPendudukState extends State<BPSPenduduk> {
                     child: Container(
                       width: 320,
                       margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: ListView(
-                        children: <Widget>[
-                          for (var i = 0; i < 20; i++) buildCard(),
-                        ],
+                      child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('city')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                              itemCount: snapshot.data.documents.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot city =
+                                    snapshot.data.documents[index];
+                                return buildCard(city);
+                              });
+                        },
                       ),
                     ),
                   ),
@@ -83,7 +93,7 @@ class _BPSPendudukState extends State<BPSPenduduk> {
         ));
   }
 
-  Card buildCard() {
+  Card buildCard(DocumentSnapshot ds) {
     return Card(
       elevation: 5,
       child: Row(
@@ -94,7 +104,7 @@ class _BPSPendudukState extends State<BPSPenduduk> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.location_city),
-                  Text("Jember"),
+                  Text(ds['name']),
                 ],
               )),
           Container(
@@ -102,7 +112,7 @@ class _BPSPendudukState extends State<BPSPenduduk> {
               child: Row(
                 children: <Widget>[
                   Icon(Icons.people_outline),
-                  Text("128900"),
+                  Text(ds['population'].toString()),
                 ],
               )),
           Container(
@@ -118,7 +128,7 @@ class _BPSPendudukState extends State<BPSPenduduk> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return BPSDetailpenduduk();
+                          return BPSDetailpenduduk(ds);
                         }));
                       }),
                 ],

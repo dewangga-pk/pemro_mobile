@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bappeda/bappeda_datawilayah_details.dart';
 import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
+import 'package:feis_mobile/database_services.dart';
 import 'package:flutter/material.dart';
 
 class BappedaDataWilayah extends StatelessWidget {
@@ -64,9 +66,20 @@ class BappedaDataWilayah extends StatelessWidget {
                   child: Container(
                     width: 320,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ListView(
-                      children: <Widget>[buildCard(context)],
-                    ),
+                    child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('city')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot ds =
+                                  snapshot.data.documents[index];
+                              return buildCard(context, ds);
+                            },
+                          );
+                        }),
                   ),
                 ),
               ],
@@ -77,13 +90,15 @@ class BappedaDataWilayah extends StatelessWidget {
     );
   }
 
-  Card buildCard(BuildContext context) {
+  Card buildCard(BuildContext context, DocumentSnapshot ds) {
     return Card(
       elevation: 5,
       child: InkWell(
-        onTap: () {
+        onTap: () async {
+          DocumentSnapshot cs =
+              await DatabaseServices.getConsum("ABcWq8lHaqT49OSf0pRB");
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return BappedaDataWilayahDetails();
+            return BappedaDataWilayahDetails(ds, cs);
           }));
         },
         child: Column(
@@ -97,7 +112,7 @@ class BappedaDataWilayah extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.location_city),
-                        Text("Jember"),
+                        Text(ds['name']),
                       ],
                     ),
                     Row(
@@ -107,7 +122,7 @@ class BappedaDataWilayah extends StatelessWidget {
                           width: 20,
                           height: 20,
                         ),
-                        Text("20504.59 ha"),
+                        Text(ds['farm'].toString() + " ha"),
                       ],
                     )
                   ],
@@ -120,13 +135,13 @@ class BappedaDataWilayah extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.people),
-                        Text("128.000"),
+                        Text(ds['population'].toString()),
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.filter_vintage),
-                        Text("7.5 ton"),
+                        Text(ds['yields'].toString() + " ton"),
                       ],
                     ),
                   ],

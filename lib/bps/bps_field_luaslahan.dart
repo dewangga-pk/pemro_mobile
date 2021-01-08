@@ -1,15 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:feis_mobile/database_services.dart';
 import 'package:flutter/material.dart';
 
 import 'layouts/appBar.dart';
 import 'layouts/background.dart';
 
 class BPSLuasLahanField extends StatefulWidget {
+  final DocumentSnapshot data;
+  const BPSLuasLahanField(this.data);
   @override
   _BPSLuasLahanFieldState createState() => _BPSLuasLahanFieldState();
 }
 
 class _BPSLuasLahanFieldState extends State<BPSLuasLahanField> {
-  TextEditingController controller = new TextEditingController();
+  TextEditingController cityController = new TextEditingController();
+  TextEditingController farmController = new TextEditingController();
+  TextEditingController yearsController = new TextEditingController();
+
+  @override
+  void initState() {
+    yearsController.text = widget.data['years'].toString();
+    farmController.text = widget.data['farm'].toString();
+    cityController.text = widget.data['name'];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,14 +104,15 @@ class _BPSLuasLahanFieldState extends State<BPSLuasLahanField> {
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: cityController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.location_city),
                             labelText: "Kota",
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          controller: farmController,
                           decoration: InputDecoration(
                             icon: ImageIcon(
                                 AssetImage("images/luas_lahan_icon.png")),
@@ -104,7 +120,8 @@ class _BPSLuasLahanFieldState extends State<BPSLuasLahanField> {
                           ),
                         ),
                         TextField(
-                          controller: controller,
+                          readOnly: true,
+                          controller: yearsController,
                           decoration: InputDecoration(
                             icon: Icon(Icons.date_range),
                             labelText: "Tahun",
@@ -116,7 +133,9 @@ class _BPSLuasLahanFieldState extends State<BPSLuasLahanField> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -127,11 +146,11 @@ class _BPSLuasLahanFieldState extends State<BPSLuasLahanField> {
                                 ),
                               ),
                               RaisedButton(
-                                onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return null;
-                                  }));
+                                onPressed: () async {
+                                  await DatabaseServices.updateFarm(
+                                      widget.data.id,
+                                      luas: double.parse(farmController.text));
+                                  Navigator.pop(context);
                                 },
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),

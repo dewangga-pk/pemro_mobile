@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:feis_mobile/litbang/layouts/appBar.dart';
-import 'package:feis_mobile/litbang/litbang_detail.dart';
+import 'package:feis_mobile/litbang/litbang_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LitbangTani extends StatelessWidget {
+  final User user;
+  LitbangTani(this.user);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,66 +68,76 @@ class LitbangTani extends StatelessWidget {
                   child: Container(
                     width: 320,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ListView(
-                      children: <Widget>[
-                        Card(
-                          elevation: 5,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return LitbangTaniDetails();
-                              }));
+                    child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('konsumsi')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot ds =
+                                  snapshot.data.documents[index];
+                              return buildCard(context, ds);
                             },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Container(
-                                    margin: EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Icon(Icons.filter_vintage),
-                                            Text("Jenis Tanaman Pangan"),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text("Beras"),
-                                          ],
-                                        )
-                                      ],
-                                    )),
-                                Container(
-                                    margin: EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Icon(Icons.pie_chart_outlined),
-                                            Text("Rata-rata hasil(ton/ha)"),
-                                          ],
-                                        ),
-                                        Text("7.5"),
-                                      ],
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                          );
+                        }),
                   ),
                 ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Card buildCard(BuildContext context, DocumentSnapshot ds) {
+    return Card(
+      elevation: 5,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return LitbangTaniField(ds);
+          }));
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Icon(Icons.filter_vintage),
+                        Text("Jenis Tanaman Pangan"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(ds['food']),
+                      ],
+                    )
+                  ],
+                )),
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Icon(Icons.pie_chart_outlined),
+                        Text("Rata-rata hasil"),
+                      ],
+                    ),
+                    Text(ds['average_harvest'].toString() + " ton/ha"),
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   }
