@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feis_mobile/bappeda/bappeda_pemerataan_details.dart';
 import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
 class BappedaPemerataan extends StatelessWidget {
+  final DocumentSnapshot cs;
+  const BappedaPemerataan(this.cs);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +67,20 @@ class BappedaPemerataan extends StatelessWidget {
                   child: Container(
                     width: 320,
                     margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ListView(
-                      children: <Widget>[buildCard(context)],
-                    ),
+                    child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('city')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot ds =
+                                  snapshot.data.documents[index];
+                              return buildCard(context, ds, cs);
+                            },
+                          );
+                        }),
                   ),
                 ),
               ],
@@ -77,13 +91,17 @@ class BappedaPemerataan extends StatelessWidget {
     );
   }
 
-  Card buildCard(BuildContext context) {
+  Card buildCard(
+      BuildContext context, DocumentSnapshot ds, DocumentSnapshot cs) {
     return Card(
       elevation: 5,
       child: InkWell(
         onTap: () {
+          var status = checkMean(ds['yields'], cs['rate'], ds['population']);
+          var sumconsum = (ds['population'] * cs['rate']) / 1000;
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return BappedaPemerataanDetails();
+            return BappedaPemerataanDetails(
+                ds['population'], status, sumconsum, ds['yields'], ds['name']);
           }));
         },
         child: Column(
@@ -97,13 +115,13 @@ class BappedaPemerataan extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.location_city),
-                        Text("Jember"),
+                        Text(ds['name']),
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.filter_vintage),
-                        Text("7.5 ton"),
+                        Text(ds['yields'].toString()),
                       ],
                     ),
                   ],
@@ -116,15 +134,25 @@ class BappedaPemerataan extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.people),
-                        Text("128.000"),
+                        Text(ds['population'].toString()),
                       ],
                     ),
-                    Text("Tercukupi")
+                    Text(checkMean(ds['yields'], cs['rate'], ds['population'])),
                   ],
                 )),
           ],
         ),
       ),
     );
+  }
+
+  String checkMean(int hasilpanen, double tingkatkonsumsi, int jumlahpenduduk) {
+    var totalconsum = tingkatkonsumsi * jumlahpenduduk;
+    var panen = hasilpanen * 1000;
+    var result = "Tercukupi";
+    if (totalconsum > panen) {
+      result = "Tidak Tercukupi";
+    }
+    return result;
   }
 }

@@ -34,4 +34,8 @@ class DatabaseServices {
   static Future<DocumentSnapshot> getCity(String id) async {
     return await cityCollection.doc(id).get();
   }
+
+  static Future<DocumentSnapshot> getConsum(String id) async {
+    return await consumCollection.doc(id).get();
+  }
 }
