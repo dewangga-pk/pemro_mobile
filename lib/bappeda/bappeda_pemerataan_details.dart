@@ -1,13 +1,25 @@
 import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
+import 'package:mapbox_gl/mapbox_gl.dart' as mb;
 
-class BappedaPemerataanDetails extends StatelessWidget {
+class BappedaPemerataanDetails extends StatefulWidget {
   final int population, yields;
   final double sumconsum;
   final String status, city;
   const BappedaPemerataanDetails(
       this.population, this.status, this.sumconsum, this.yields, this.city);
+
+  @override
+  _BappedaPemerataanDetailsState createState() =>
+      _BappedaPemerataanDetailsState();
+}
+
+class _BappedaPemerataanDetailsState extends State<BappedaPemerataanDetails> {
+  var token =
+      'pk.eyJ1IjoiYW5kcm9tZWRhNTcwIiwiYSI6ImNram82YzJmdDZ0bTkyeWxndzhwcTByMHoifQ.A-lPALtNrAcHG5rdvMiC6g';
+
+  mb.MapboxMapController mapController;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +95,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              Text(city),
+                              Text(widget.city),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -97,7 +109,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text(population.toString()),
+                                  Text(widget.population.toString()),
                                 ],
                               ),
                               Row(
@@ -113,7 +125,8 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text(sumconsum.toStringAsFixed(2) + " ton"),
+                                  Text(widget.sumconsum.toStringAsFixed(2) +
+                                      " ton"),
                                 ],
                               ),
                               Row(
@@ -129,7 +142,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text(yields.toString() + " ton"),
+                                  Text(widget.yields.toString() + " ton"),
                                 ],
                               ),
                               Row(
@@ -145,7 +158,7 @@ class BappedaPemerataanDetails extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Text(status),
+                                  Text(widget.status),
                                 ],
                               )
                             ],
@@ -155,11 +168,41 @@ class BappedaPemerataanDetails extends StatelessWidget {
                     ),
                   ),
                 ),
+                buildMap(),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  Widget buildMap() {
+    return Container(
+      height: 100,
+      child: mb.MapboxMap(
+        accessToken: token,
+        styleString: 'mapbox://styles/andromeda570/ckjo90z4y0mw619s3sxnio82l',
+        initialCameraPosition: new mb.CameraPosition(
+          target: mb.LatLng(-7.0285394, 112.7462689),
+          zoom: 8,
+        ),
+        onMapCreated: mapCreated,
+      ),
+    );
+  }
+
+  void mapCreated(mb.MapboxMapController controller) {
+    mapController = controller;
+
+    var lokasi = mb.LatLng(-7.0285394, 112.7462689);
+
+    mapController.addCircle(new mb.CircleOptions(
+      circleRadius: 8,
+      circleColor: 'blue',
+      circleOpacity: 1,
+      geometry: lokasi,
+      draggable: false,
+    ));
   }
 }

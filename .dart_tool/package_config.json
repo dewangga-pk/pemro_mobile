@@ -2,6 +2,18 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "archive",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/archive-2.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/args-1.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.4.2",
       "packageUri": "lib/",
@@ -52,6 +64,18 @@
     {
       "name": "collection",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.14.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "convert",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.17"
+    },
+    {
+      "name": "crypto",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.1.5",
       "packageUri": "lib/",
       "languageVersion": "2.3"
     },
@@ -128,6 +152,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "image",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/image-2.1.19",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "intl",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.16.1",
       "packageUri": "lib/",
@@ -138,6 +168,30 @@
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.2",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "mapbox_gl",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/mapbox_gl-0.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "mapbox_gl_dart",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/mapbox_gl_dart-0.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "mapbox_gl_platform_interface",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/mapbox_gl_platform_interface-0.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "mapbox_gl_web",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/mapbox_gl_web-0.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "matcher",
@@ -162,6 +216,12 @@
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.7.0",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "petitparser",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-3.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
     },
     {
       "name": "plugin_platform_interface",
@@ -236,13 +296,19 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "xml",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "feis_mobile",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-01-07T01:58:03.302760Z",
+  "generated": "2021-01-08T13:08:23.637437Z",
   "generator": "pub",
   "generatorVersion": "2.9.2"
 }
