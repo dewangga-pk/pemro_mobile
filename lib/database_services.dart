@@ -27,6 +27,10 @@ class DatabaseServices {
     await cityCollection.doc(id).update({'yields': result});
   }
 
+  static Future<void> updateHarvest(String id, {double harvest}) async {
+    await consumCollection.doc(id).update({'average_harvest': harvest});
+  }
+
   static Future<DocumentSnapshot> getCity(String id) async {
     return await cityCollection.doc(id).get();
   }
