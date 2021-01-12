@@ -151,6 +151,13 @@ class BappedaPemerataanDetails extends StatelessWidget {
                             ],
                           ),
                         ),
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width / 0.5,
+                          height: 180,
+                          color: Colors.amber,
+                        ),
                       ],
                     ),
                   ),
