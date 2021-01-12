@@ -2,12 +2,15 @@ import 'package:feis_mobile/bappeda/layouts/appBar.dart';
 import 'package:feis_mobile/bps/layouts/background.dart';
 import 'package:flutter/material.dart';
 
+import 'package:here_sdk/mapview.dart';
+import 'package:here_sdk/core.dart';
+
 class BappedaPemerataanDetails extends StatelessWidget {
   final int population, yields;
-  final double sumconsum;
+  final double sumconsum, latitude, longitude;
   final String status, city;
-  const BappedaPemerataanDetails(
-      this.population, this.status, this.sumconsum, this.yields, this.city);
+  const BappedaPemerataanDetails(this.population, this.status, this.sumconsum,
+      this.yields, this.city, this.latitude, this.longitude);
 
   @override
   Widget build(BuildContext context) {
@@ -153,10 +156,13 @@ class BappedaPemerataanDetails extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.all(10),
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(2),
                           width: MediaQuery.of(context).size.width / 0.5,
                           height: 180,
                           color: Colors.amber,
+                          child: HereMap(
+                            onMapCreated: onMapCreated,
+                          ),
                         ),
                       ],
                     ),
@@ -168,5 +174,18 @@ class BappedaPemerataanDetails extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void onMapCreated(HereMapController hereMapController) {
+    hereMapController.mapScene.loadSceneForMapScheme(MapScheme.normalDay,
+        (error) {
+      if (error != null) {
+        print('Error : ' + error.toString());
+        return;
+      }
+    });
+    double distanceToEarthInMeters = 40000;
+    hereMapController.camera.lookAtPointWithDistance(
+        GeoCoordinates(latitude, longitude), distanceToEarthInMeters);
   }
 }

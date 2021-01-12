@@ -9,6 +9,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="feis_mobile"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.here.sdk.access_key_id" android:value="HeEbEbHfbxyHPxE-d--iFg"/>
+<meta-data android:name="com.here.sdk.access_key_secret" android:value="-ODU-USgCfFbkmEhTXD9XFPMTaI7mDj0w8L_obbdlNFkzmMh2G3hX68amC0qRcm-rpaupkAluDEqIyWGY8OF_Q"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
