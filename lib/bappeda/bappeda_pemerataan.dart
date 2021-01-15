@@ -100,8 +100,8 @@ class BappedaPemerataan extends StatelessWidget {
           var status = checkMean(ds['yields'], cs['rate'], ds['population']);
           var sumconsum = (ds['population'] * cs['rate']) / 1000;
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return BappedaPemerataanDetails(
-                ds['population'], status, sumconsum, ds['yields'], ds['name']);
+            return BappedaPemerataanDetails(ds['population'], status, sumconsum,
+                ds['yields'], ds['name'], ds['latitude'], ds['longtitude']);
           }));
         },
         child: Column(
